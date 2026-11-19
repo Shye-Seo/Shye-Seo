@@ -52,6 +52,9 @@
 
     <rect x="464" y="238" width="182" height="30" rx="15" fill="#0F2A3D" stroke="#1E5F7A" stroke-width="1"/>
     <text x="555" y="257" text-anchor="middle" fill="#7DD3FC">Shortform Pipeline</text>
+
+    <rect x="656" y="238" width="196" height="30" rx="15" fill="#141F3D" stroke="#3B4A8A" stroke-width="1"/>
+    <text x="754" y="257" text-anchor="middle" fill="#A5B4FC">Public Data Pipeline</text>
   </g>
 
   <!-- full-cycle diagram: plan -> db -> api -> web -> ops -> plan -->
