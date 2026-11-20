@@ -40,7 +40,7 @@
     <text x="323" y="208" font-size="30" font-weight="700" fill="#F8FAFC">41</text>
     <text x="323" y="230" font-size="12" fill="#94A3B8">abuse blocked in a 1,000-comment burst</text>
 
-    <text x="597" y="208" font-size="30" font-weight="700" fill="#F8FAFC">10</text>
+    <text x="597" y="208" font-size="30" font-weight="700" fill="#F8FAFC">12</text>
     <text x="597" y="230" font-size="12" fill="#94A3B8">PostgreSQL tables · 20 REST paths</text>
   </g>
 </svg>
