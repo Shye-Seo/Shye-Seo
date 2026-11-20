@@ -208,7 +208,7 @@
 ## 📊 GitHub Stats
 
 <div align="center">
-  <img alt="Engineering footprint" src="assets/footprint.svg" width="100%" />
+  <img alt="Engineering footprint" src="assets/footprint.svg?v=20261120" width="100%" />
 <br /><br />
   <img alt="GitHub contributions" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Shye-Seo&amp;theme=github_dark" width="100%" />
 <br />
