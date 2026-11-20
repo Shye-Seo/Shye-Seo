@@ -11,15 +11,16 @@
 
   <p>
     <img alt="Projects" src="https://img.shields.io/badge/flagship_projects-3-0F2A3D?style=flat-square" />
-    <img alt="Tests" src="https://img.shields.io/badge/tests_(3_repos)-1%2C251-2E7D32?style=flat-square" />
-    <img alt="Vitest" src="https://img.shields.io/badge/Vitest-972-4C9A2A?style=flat-square&logo=vitest&logoColor=white" />
+    <img alt="Tests" src="https://img.shields.io/badge/tests_(3_repos)-1%2C429-2E7D32?style=flat-square" />
+    <img alt="Vitest" src="https://img.shields.io/badge/unit_·_Vitest-1%2C141-4C9A2A?style=flat-square&logo=vitest&logoColor=white" />
     <img alt="PHPUnit" src="https://img.shields.io/badge/PHPUnit-260-777BB4?style=flat-square&logo=php&logoColor=white" />
-    <img alt="Playwright" src="https://img.shields.io/badge/E2E-19_passed-2EAD33?style=flat-square&logo=playwright&logoColor=white" />
+    <img alt="Playwright" src="https://img.shields.io/badge/E2E-28_passed-2EAD33?style=flat-square&logo=playwright&logoColor=white" />
   </p>
 
   <p>
     <a href="#-flagship-projects">Flagship Projects</a> ·
     <a href="#-full-cycle--한-사람이-끝까지">Full-Cycle</a> ·
+    <a href="#-그-외-저장소">Other Repos</a> ·
     <a href="#-tech-stack">Tech Stack</a> ·
     <a href="#-github-stats">GitHub Stats</a> ·
     <a href="#-contact">Contact</a>
@@ -40,6 +41,7 @@
 | **이벤트 어뷰징** | 댓글 이벤트에 매크로 · 다계정 동시 유입 | 디바이스 지문 · 버스트 판정으로 1,000건 부하 중 어뷰징 41건 차단, 1회용 HMAC 토큰 |
 | **공공데이터 재수집 중복** | 같은 달 실거래가를 다시 받을 때 표기 차이로 행이 늘어 집계가 왜곡 | 정규화 후 `sha256` 거래 해시 + `ON CONFLICT DO UPDATE`, 신규/갱신 카운트 분리 |
 | **부분 실패** | 6개 지역·월 배치 중 1개만 실패했을 때 전체 재수집 또는 누락 | 실행/배치를 나눠 `succeeded · partial · failed` 상태와 DLQ로 어느 배치가 빠졌는지 남김 |
+| **급매를 급매로 보이게 하는 착시** | 표본 1~2건으로 만든 중위가와 비교해 아무 매물이나 저평가로 표시 | 표본 하한과 근거를 화면에 남기고, 할인율·전세가율·거래량·단지 규모를 점수로 분해 |
 
 ---
 
@@ -61,12 +63,15 @@
 • 10만 행 × 13열 = 130만 셀 → <b>390 DOM 노드</b>로 가상화 (약 3,300배 절감)<br />
 • <b>재고 1,000 · 워커 프로세스 16개 동시 경합 → 발급 1,000건 · 오버이슈 0건</b><br />
 • 쿠폰 원장 <b>10만 행</b> 적재 25.3s, 멱등키 조회 <b>0.29ms</b> — 인덱스 실행계획까지 측정<br />
+• <b>가격·마진 탄력성 시뮬레이터</b> — 정가·할인율·ROAS를 5개 마켓에 같은 조건으로 넣고 마진 곡선·손익분기 비교<br />
+• <b>정산 이상징후 경보 룰 빌더</b> — 수수료율·정산 지연·쿠폰 부담률 룰을 켜고 끄면 위반 정산 행·입금일·알림톡 본문이 즉시 재계산<br />
 • 의존성 0의 <b>XLSX 파서</b>(ZIP + <code>DecompressionStream</code>), 마켓별 규격 CSV · 인쇄용 PDF 소명 리포트<br />
-• <b>테스트 545</b> — Vitest 400 · PHPUnit 135 · Playwright E2E 10<br />
+• <b>테스트 581</b> — Vitest 431 · PHPUnit 135 · Playwright E2E 15<br />
 • <b>월별 재대사</b> — 월 요약 이력 저장 + 전월 대비 원인별 차액·신규/해소 판정
 </p>
 
 <p>
+<a href="https://shye-seo.github.io/commerce-seller-analytics/">라이브 데모</a> ·
 <a href="https://github.com/Shye-Seo/commerce-seller-analytics">저장소</a> ·
 <a href="https://github.com/Shye-Seo/commerce-seller-analytics/blob/main/database/ERD_SPEC.md">ERD 설계서</a> ·
 <a href="https://github.com/Shye-Seo/commerce-seller-analytics/blob/main/docs/settlement-reconciliation-spec.md">대사 명세</a>
@@ -87,12 +92,15 @@
 • 1,000건 동시 인입 부하 실측: <b>어뷰징 41건 차단 · 발송 500 · 수령 349 · 오버이슈 0건</b><br />
 • 분산 렌더 큐: <code>SKIP LOCKED</code> 선점 · Lease 장애 복구 · <b>DLQ 원클릭 재시도 콘솔</b><br />
 • Meta 25건/일 · YouTube 1,600 unit 등 <b>플랫폼별 일일 API 쿼터 사전 계산 및 초과 차단</b><br />
+• <b>OSMU 크로스채널 변환</b> — 4비트 대본 하나로 릴스 캡션 · 쇼츠 설명 · 블로그/스레드 요약을 동시에 생성 (글자 상한·해시태그 규칙·스레드 500자 분할)<br />
+• <b>훅 패턴 성과 시뮬레이터</b> — 같은 주제의 4가지 훅 유형을 카테고리 기준선·길이 감점으로 비교하고, 시뮬레이션 값에는 <code>실측 아님</code>을 표기<br />
 • 오디오 더킹 · 단어별 키네틱 자막 · 9:16 안전영역 · FFmpeg 6.0 실렌더 검증<br />
 • <b>쿼터 인지 발행 계획</b> — 예산이 없으면 실패가 아니라 다음 창으로 미루고, 슬롯·최소 간격·우선순위를 함께 지킴<br />
-• <b>테스트 586</b> — Vitest 461 · PHPUnit 125, 커버리지 86.0%
+• <b>테스트 633</b> — Vitest 508 · PHPUnit 125, 커버리지 88.7%
 </p>
 
 <p>
+<a href="https://shye-seo.github.io/sns-shortform-automation/">라이브 데모</a> ·
 <a href="https://github.com/Shye-Seo/sns-shortform-automation">저장소</a> ·
 <a href="https://github.com/Shye-Seo/sns-shortform-automation/blob/main/docs/distributed-video-pipeline-spec.md">파이프라인 명세</a>
 </p>
@@ -104,21 +112,25 @@
 
 <h3><a href="https://github.com/Shye-Seo/prop-data-hub">3. prop-data-hub</a></h3>
 
-<b>공공데이터 수집 파이프라인 &amp; 행동 이벤트 분석 모노레포</b><br />
+<b>공공데이터 수집 파이프라인 · 부동산 급매 레이더 · 행동 이벤트 분석 모노레포</b><br />
 <sub><code>TypeScript</code> <code>Node.js 20</code> <code>Fastify</code> <code>React 18</code> <code>Vite</code> <code>PostgreSQL 16</code> <code>pnpm workspace</code></sub>
 
-<p>국토교통부 아파트 매매 실거래가와 한국은행 ECOS 지표를 수집·정규화해 PostgreSQL에 적재하고, 같은 저장소의 REST API와 React 대시보드가 그 값을 지표로 보여 줍니다. 사용자 행동 이벤트도 같은 스키마로 수집해 퍼널까지 계산합니다.</p>
+<p>국토교통부 아파트 매매·전월세 실거래가와 한국은행 ECOS 지표를 수집·정규화해 PostgreSQL에 적재하고, 같은 저장소의 REST API와 React 대시보드가 그 값을 지표로 보여 줍니다. 부산 6개 구에서는 <b>350세대 이상 단지만 골라 매매 급매를 모으는 레이더</b>로 동작하고, 사용자 행동 이벤트도 같은 스키마로 수집해 퍼널까지 계산합니다.</p>
 
 <p>
+• <b>350세대+ 매매 급매 레이더</b> — 부산진·동래·남·해운대·연제·수영 6개 구, 최근 중위가 대비 <b>-8% 이하</b>만 수집. 점수는 할인율 45 · 전세가율 20 · 거래량 15 · 단지 규모 20, 표본이 부족한 중위가는 근거와 함께 걸러냄<br />
+• <b>맞춤 알림 규칙 빌더</b> — 구·세대수·평형·할인율·점수 조건을 저장하면(<code>alert_rules</code>) 매칭 건수와 카카오 알림톡·웹훅 payload를 미리보기로 확인<br />
+• <b>전세가율·이상치 리스크</b> — 전월세 커넥터 + 월별 전세가율 뷰(<code>v_jeonse_ratio_monthly</code>), 수정 z-score·급락 스코어링<br />
+• <b>이벤트 정의를 한 곳에</b> — 9종 이벤트 · 5단계 퍼널을 <code>packages/shared</code>에 정의해 프론트 트래커·API·DB 집계가 같은 zod 스키마를 사용하고, 데모 하단 인스펙터에서 화면 조작마다 수집 → 스키마 검증 → 배치 버퍼 → 적재 → 퍼널 집계 5단계와 payload를 그대로 노출<br />
 • <b>해시 기반 멱등 업서트</b> — 정규화 후 <code>sha256</code> 거래 해시 + <code>ON CONFLICT DO UPDATE</code>, <code>RETURNING (xmax = 0)</code>으로 신규/갱신 분리<br />
 • <b>부분 실패를 숨기지 않는 실행 이력</b> — 실행/배치 2계층, <code>succeeded · partial · failed</code>, DLQ 재처리, 기준일(<code>as_of_date</code>)과 수집 시각 분리<br />
-• <b>PostgreSQL 16</b> — 10테이블 · BRIN/BTREE/GIN 인덱스 · 월 파티션 · 중위가 머티리얼라이즈드 뷰 · 순서 보정 퍼널 함수<br />
-• <b>이벤트 정의를 한 곳에</b> — 6종 이벤트 · 5단계 퍼널을 <code>packages/shared</code>에 정의해 프론트 트래커·API·DB 집계가 같은 zod 스키마를 사용<br />
-• <b>REST API 16경로 + OpenAPI 3.0</b> — 인메모리/PostgreSQL 스토어를 같은 인터페이스로, DB 없이도 라우트·검증을 테스트<br />
-• <b>테스트 111 + E2E 9</b> — shared 47 · api 28 · collector 25 · web 11, DDL과 업서트는 PostgreSQL 16 호환 엔진(PGlite)에서 실제 실행
+• <b>PostgreSQL 16</b> — 12테이블 · BRIN/BTREE/GIN 인덱스 · 월 파티션 · 중위가 머티리얼라이즈드 뷰 · 순서 보정 퍼널 함수<br />
+• <b>REST API 20경로 + OpenAPI 3.0</b> — 데모에서 오퍼레이션별 Mock 실행과 스키마·관계 요약까지 확인, 인메모리/PostgreSQL 스토어를 같은 인터페이스로<br />
+• <b>테스트 202 + E2E 13</b> — shared 102 · api 39 · collector 33 · web 28, DDL과 업서트는 PostgreSQL 16 호환 엔진(PGlite)에서 실제 실행
 </p>
 
 <p>
+<a href="https://shye-seo.github.io/prop-data-hub/">라이브 데모</a> ·
 <a href="https://github.com/Shye-Seo/prop-data-hub">저장소</a> ·
 <a href="https://github.com/Shye-Seo/prop-data-hub/blob/main/ARCHITECTURE.md">아키텍처 문서</a> ·
 <a href="https://github.com/Shye-Seo/prop-data-hub/blob/main/infra/postgres/init.sql">PostgreSQL 스키마</a>
@@ -136,13 +148,23 @@
 
 | 계층 | 무엇을 했나 | 어디서 확인하나 |
 | --- | --- | --- |
-| **기획 · 요구 정의** | 정산 계약 규격, 이상 징후 11종 판정표, 청구 가능/불가 분리 정책, 숏폼 5초 예산 설계 | [대사 명세](https://github.com/Shye-Seo/commerce-seller-analytics/blob/main/docs/settlement-reconciliation-spec.md) · [파이프라인 명세](https://github.com/Shye-Seo/sns-shortform-automation/blob/main/docs/distributed-video-pipeline-spec.md) |
-| **DB 설계** | MySQL 8.0 **12테이블**, ERD, 복합 인덱스 선택 근거, 실행 계획 측정, 멱등 유니크 키 · PostgreSQL 16 **10테이블**, BRIN/GIN, 월 파티션, 집계 뷰·퍼널 함수 | [ERD_SPEC.md](https://github.com/Shye-Seo/commerce-seller-analytics/blob/main/database/ERD_SPEC.md) · [init.sql](https://github.com/Shye-Seo/prop-data-hub/blob/main/infra/postgres/init.sql) |
-| **백엔드** | PHP 8.2 OOP 도메인 · PDO 리포지토리, `SELECT … FOR UPDATE` + 낙관적 락, 해시체인 감사 로그, SENS 알림톡(HMAC 서명), Meta 웹훅 HMAC 검증 · Fastify + zod 수집 API, 재시도·백오프·DLQ | [backend/](https://github.com/Shye-Seo/commerce-seller-analytics/tree/main/backend) · [apps/api](https://github.com/Shye-Seo/prop-data-hub/tree/main/apps/api) |
-| **프론트엔드** | Next.js 14 App Router · TypeScript strict · Tailwind, Web Worker 파싱, rAF 스로틀 가상화, 실시간 콘솔 | [src/](https://github.com/Shye-Seo/commerce-seller-analytics/tree/main/src) |
+| **기획 · 요구 정의** | 정산 계약 규격, 이상 징후 판정표, 청구 가능/불가 분리 정책, 숏폼 5초 예산 설계, 급매 레이더 점수 배점과 표본 하한 | [대사 명세](https://github.com/Shye-Seo/commerce-seller-analytics/blob/main/docs/settlement-reconciliation-spec.md) · [파이프라인 명세](https://github.com/Shye-Seo/sns-shortform-automation/blob/main/docs/distributed-video-pipeline-spec.md) · [레이더 §5](https://github.com/Shye-Seo/prop-data-hub/blob/main/README.md#5-급매-레이더-350세대-매매-저가-알림) |
+| **DB 설계** | MySQL 8.0 **12테이블**, ERD, 복합 인덱스 선택 근거, 실행 계획 측정, 멱등 유니크 키 · PostgreSQL 16 **12테이블**, BRIN/GIN, 월 파티션, 집계 뷰·퍼널 함수 | [ERD_SPEC.md](https://github.com/Shye-Seo/commerce-seller-analytics/blob/main/database/ERD_SPEC.md) · [init.sql](https://github.com/Shye-Seo/prop-data-hub/blob/main/infra/postgres/init.sql) |
+| **백엔드** | PHP 8.2 OOP 도메인 · PDO 리포지토리, `SELECT … FOR UPDATE` + 낙관적 락, 해시체인 감사 로그, SENS 알림톡(HMAC 서명), Meta 웹훅 HMAC 검증 · Fastify + zod 수집 API, 급매 레이더·알림 규칙 API, 재시도·백오프·DLQ | [backend/](https://github.com/Shye-Seo/commerce-seller-analytics/tree/main/backend) · [apps/api](https://github.com/Shye-Seo/prop-data-hub/tree/main/apps/api) |
+| **프론트엔드** | Next.js 14 App Router · TypeScript strict · Tailwind, Web Worker 파싱, rAF 스로틀 가상화, 실시간 콘솔 · 급매 레이더 조건 패널과 이벤트 인스펙터 | [src/](https://github.com/Shye-Seo/commerce-seller-analytics/tree/main/src) · [apps/web](https://github.com/Shye-Seo/prop-data-hub/tree/main/apps/web) |
 | **운영 · 관측** | 해시체인 감사 로그 무결성 검증, Prometheus 메트릭, 스튜디오 콘솔, DLQ 재시도, 레이트리밋, 파이프라인 품질 뷰(보정·해제·기준일 불일치) | [shortform-engine src/](https://github.com/Shye-Seo/sns-shortform-automation/tree/main/src) · [pipeline 화면](https://github.com/Shye-Seo/prop-data-hub/blob/main/apps/web/src/pages/Pipeline.tsx) |
 
 > **정직하게 남긴 경계** — Meta DM · SENS 실제 발송, 마켓 Open API 실호출, Redis 실서버, 공공데이터포털·ECOS 라이브 호출은 자격 증명이 없어 **어댑터 · 서명 벡터 · 응답 픽스처 · 실패 분류까지**를 검증 범위로 두고 README에 명시했습니다. AWS 배포와 Docker 이미지 빌드도 하지 않았고(템플릿·구성만 작성), 그 사실을 문서에 적었습니다. 검증한 것과 못 한 것을 구분해 적는 것이 이 포트폴리오의 규칙입니다.
+
+---
+
+## 🧭 그 외 저장소
+
+| 저장소 | 내용 |
+| --- | --- |
+| [voice-guard-ios](https://github.com/Shye-Seo/voice-guard-ios) | 주변 대화의 감정 격양(성량 급등 · 피치 상승 · 에너지 급변)을 온디바이스로 감지해 프리롤부터 자동 녹음하는 iOS 앱. SwiftUI · 2-Stage VAD · 앱 잠금/파일 암호화 · 코어 17 XCTest |
+| [quoguri-blog](https://github.com/Shye-Seo/quoguri-blog) | Astro 7 정적 블로그 — 애드센스·쿠팡 파트너스 카드, SEO·RSS·사이트맵, GitHub Actions → GitHub Pages 배포 |
+| [Python_game31](https://github.com/Shye-Seo/Python_game31) | 웹에서 바로 실행되는 미니게임 4종 — 배스킨라빈스31 필승 AI · 숫자야구 · 반응속도 · 짝맞추기 |
 
 ---
 
@@ -197,21 +219,22 @@
 위 왼쪽 카드는 이 저장소에 커밋된 정적 SVG이고, 아래 세 카드는 GitHub 활동 그래프입니다. 세 프로젝트의 실력 증거는 아래 **재현 명령**으로 직접 확인하실 수 있습니다.
 
 ```bash
-# 1호: 정산 대사 & 선착순 쿠폰 원장
+# 1호: 정산 대사 · 선착순 쿠폰 원장 · 가격 탄력성 · 경보 룰
 git clone https://github.com/Shye-Seo/commerce-seller-analytics && cd commerce-seller-analytics
-npm ci && npm test                                   # Vitest 400
+npm ci && npm test                                   # Vitest 431
+npx playwright install && npm run test:e2e           # Playwright E2E 15
 cd backend && composer install && vendor/bin/phpunit # PHPUnit 135
 php bin/flash-drop-simulate.php --stock=1000 --workers=16 --per-worker=120   # 다중 프로세스 오버이슈 검증
 
-# 2호: 숏폼 자동화 파이프라인
+# 2호: 숏폼 자동화 파이프라인 · OSMU · 훅 패턴
 git clone https://github.com/Shye-Seo/sns-shortform-automation && cd sns-shortform-automation
-npm ci && npm run verify                             # typecheck + lint + Vitest 461
+npm ci && npm run verify                             # typecheck + lint + Vitest 508
 cd backend && composer install && vendor/bin/phpunit # PHPUnit 125
 
-# 3호: 공공데이터 수집 & 행동 이벤트 모노레포
+# 3호: 공공데이터 수집 · 급매 레이더 · 행동 이벤트 모노레포
 git clone https://github.com/Shye-Seo/prop-data-hub && cd prop-data-hub
-pnpm install && pnpm -r test                         # Vitest 111 (shared · api · collector · web)
-pnpm test:e2e                                        # Playwright 9 (프로덕션 빌드)
+pnpm install && pnpm -r test                         # Vitest 202 (shared · api · collector · web)
+pnpm test:e2e                                        # Playwright 13 (프로덕션 빌드)
 pnpm --filter @prop/collector once                   # 수집 → 정규화 → 적재 1회 실행(샘플 응답)
 ```
 

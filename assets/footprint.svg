@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 250" width="880" height="250" role="img" aria-label="Engineering footprint: 1,251 tests, 612ms 100k-row parse, 0 oversell with 16 concurrent workers, 5s coupon dispatch, 41 abuse blocked, 10 PostgreSQL tables and 16 REST routes">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 250" width="880" height="250" role="img" aria-label="Engineering footprint: 1,429 tests, 612ms 100k-row parse, 0 oversell with 16 concurrent workers, 5s coupon dispatch, 41 abuse blocked, 12 PostgreSQL tables and 20 REST paths">
   <defs>
     <linearGradient id="cbg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0B1220"/>
@@ -25,8 +25,8 @@
   </g>
 
   <g font-family="ui-monospace, Menlo, Consolas, monospace">
-    <text x="30" y="126" font-size="30" font-weight="700" fill="#F8FAFC">1,251</text>
-    <text x="30" y="148" font-size="12" fill="#94A3B8">tests passing (972 Vitest · 260 PHPUnit · 19 E2E)</text>
+    <text x="30" y="126" font-size="30" font-weight="700" fill="#F8FAFC">1,429</text>
+    <text x="30" y="148" font-size="12" fill="#94A3B8">1,141 unit · 260 PHPUnit · 28 E2E</text>
 
     <text x="323" y="126" font-size="30" font-weight="700" fill="#F8FAFC">612ms</text>
     <text x="323" y="148" font-size="12" fill="#94A3B8">parse 100k-row settlement CSV (12.98MB)</text>
@@ -41,6 +41,6 @@
     <text x="323" y="230" font-size="12" fill="#94A3B8">abuse blocked in a 1,000-comment burst</text>
 
     <text x="597" y="208" font-size="30" font-weight="700" fill="#F8FAFC">10</text>
-    <text x="597" y="230" font-size="12" fill="#94A3B8">PostgreSQL tables · 16 REST routes</text>
+    <text x="597" y="230" font-size="12" fill="#94A3B8">PostgreSQL tables · 20 REST paths</text>
   </g>
 </svg>
